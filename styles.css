@@ -1,0 +1,27 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    width: 100px;
+    height: 100px;
+}
+
+.calculator {
+    margin-top: 130px;
+    margin-left: 30px;
+    width: 450px;
+}
+
+.display {
+    background-color: beige;
+    height: 100px;
+    width: 430px;
+}
+
+.row {
+    margin: 10px;
+}
+
