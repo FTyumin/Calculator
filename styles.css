@@ -7,21 +7,32 @@
 button {
     width: 100px;
     height: 100px;
+    font-size: 32px;
 }
 
 .calculator {
-    margin-top: 130px;
+    margin-top: 100px;
     margin-left: 30px;
-    width: 450px;
+    width: 500px;
+    background-color: grey;
+    height: 700px;
 }
 
 .display {
+    margin: 10px 25px;
     background-color: beige;
     height: 100px;
-    width: 430px;
+    width: 400px;
+    display: inline-block; /*this line makes the margin visible*/
+    font-size: 32px;;
 }
+
+
 
 .row {
     margin: 10px;
 }
 
+.row:first-child {
+    margin-top: 30px;
+}

@@ -28,5 +28,19 @@ function operate(operator,x,y) {
 }
 
 function clear() {
-    
+
 }
+
+function display(button) {
+    let outputDiv = document.querySelector(".display");
+    outputDiv.innerHTML = button.getAttribute("name");
+
+}
+
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        display(button)
+    })
+})
