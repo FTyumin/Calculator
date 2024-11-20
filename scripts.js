@@ -1,4 +1,9 @@
+let firstNum;
+let secondNum;
+let operation;
+
 function add(x,y) {
+    console.log(x+y);
     return x+y;
 }
 
@@ -15,15 +20,17 @@ function divide(x,y) {
 }
 
 function operate(operator,x,y) {
+    x = parseInt(x);
+    y = parseInt(y);
     switch(operator) {
         case '+':
-            add(x,y);
+            return add(x,y);
         case '-':
-            subtract(x,y);
+            return subtract(x,y);
         case '*':
-            multiply(x, y);
+            return multiply(x, y);
         case '/':
-            divide(x, y);
+            return divide(x, y);
     }
 }
 
@@ -32,8 +39,34 @@ function clear() {
 }
 
 function display(button) {
+    
     let outputDiv = document.querySelector(".display");
-    outputDiv.innerHTML = button.getAttribute("name");
+    let buttonPressed = button.getAttribute("name");
+    let result;
+    if(buttonPressed=='C') {
+        outputDiv.innerHTML='';
+    } else {
+
+        if( buttonPressed=== '=') {
+            result = operate(operation, firstNum, secondNum);
+            
+        }
+        else if (buttonPressed=='/' || buttonPressed=='*' ||
+             buttonPressed==='+' || buttonPressed=='-') {
+                operation = buttonPressed;
+        }
+        if(!firstNum)
+            firstNum = button.getAttribute("name");
+        else 
+            secondNum = button.getAttribute("name");
+    
+        outputDiv.innerHTML += button.getAttribute("name");
+        if(result)
+            outputDiv.innerHTML += result;
+        
+    }
+    
+
 
 }
 
