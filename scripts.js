@@ -1,5 +1,5 @@
-let firstNum;
-let secondNum;
+let firstNum='';
+let secondNum='';
 let operation;
 
 function add(x,y) {
@@ -45,20 +45,26 @@ function display(button) {
     let result;
     if(buttonPressed=='C') {
         outputDiv.innerHTML='';
+        firstNum='';
+        secondNum='';
+        result='';
+        operation='';
     } else {
 
-        if( buttonPressed=== '=') {
+        if(buttonPressed=== '=') {
             result = operate(operation, firstNum, secondNum);
-            
+            console.log(firstNum);
+            console.log(secondNum);
+            console.log(result);
         }
         else if (buttonPressed=='/' || buttonPressed=='*' ||
              buttonPressed==='+' || buttonPressed=='-') {
                 operation = buttonPressed;
         }
-        if(!firstNum)
-            firstNum = button.getAttribute("name");
-        else 
-            secondNum = button.getAttribute("name");
+        else if(!operation) 
+            firstNum +=buttonPressed;
+        else
+            secondNum += buttonPressed;
     
         outputDiv.innerHTML += button.getAttribute("name");
         if(result)
@@ -66,8 +72,6 @@ function display(button) {
         
     }
     
-
-
 }
 
 const buttons = document.querySelectorAll("button");
