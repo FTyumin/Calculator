@@ -22,6 +22,8 @@ function divide(x,y) {
 function operate(operator,x,y) {
     x = parseInt(x);
     y = parseInt(y);
+    if(operator==='/' && y===0) 
+        return 'Cannot divide by 0, dumbass!';
     switch(operator) {
         case '+':
             return add(x,y);
@@ -42,6 +44,7 @@ function display(button) {
     
     let outputDiv = document.querySelector(".display");
     let buttonPressed = button.getAttribute("name");
+    let buttonType = button.getAttribute("id");
     let result;
     if(buttonPressed=='C') {
         outputDiv.innerHTML='';
@@ -49,26 +52,41 @@ function display(button) {
         secondNum='';
         result='';
         operation='';
-    } else {
+    } else if(buttonPressed=='del') {
+        
+    }
+     else {
 
-        if(buttonPressed=== '=') {
+        if(buttonType==='num') {
+            outputDiv.innerHTML = buttonPressed;
+            if(!firstNum) 
+            {
+                firstNum = buttonPressed;
+                console.log(firstNum);
+            }
+               
+            else if(!secondNum) {
+                secondNum = buttonPressed;
+                console.log(secondNum);
+            }
+            else if(firstNum && secondNum) {
+                
+            } 
+                
+
+            
+        } else if(buttonPressed==='=') {
             result = operate(operation, firstNum, secondNum);
-            console.log(firstNum);
-            console.log(secondNum);
-            console.log(result);
+            outputDiv.innerHTML = result;
+            result = parseInt(result);
+            firstNum = result;
+            secondNum = '';
+
+        } else {
+            operation = buttonPressed;
         }
-        else if (buttonPressed=='/' || buttonPressed=='*' ||
-             buttonPressed==='+' || buttonPressed=='-') {
-                operation = buttonPressed;
-        }
-        else if(!operation) 
-            firstNum +=buttonPressed;
-        else
-            secondNum += buttonPressed;
-    
-        outputDiv.innerHTML += button.getAttribute("name");
-        if(result)
-            outputDiv.innerHTML += result;
+        
+
         
     }
     
