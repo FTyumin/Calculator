@@ -64,6 +64,10 @@ function display(button) {
                 firstNum = buttonPressed;
                 console.log(firstNum);
             }
+            else if(firstNum && !operation) {
+                firstNum += buttonPressed;
+                outputDiv.innerHTML = firstNum;
+            }
                
             else if(!secondNum) {
                 secondNum = buttonPressed;
@@ -81,10 +85,24 @@ function display(button) {
             result = parseInt(result);
             firstNum = result;
             secondNum = '';
-
         } else {
+            
+            // result = operate(operation, firstNum, secondNum);
+            // if(result) {
+            //     outputDiv.innerHTML = result;
+            // }
+            if(firstNum && secondNum) {
+                result = operate(operation, firstNum, secondNum);
+            outputDiv.innerHTML = result;
+            result = parseInt(result);
+            firstNum = result;
+            secondNum = '';
+            
+            }
             operation = buttonPressed;
         }
+
+
         
 
         
