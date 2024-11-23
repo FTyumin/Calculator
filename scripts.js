@@ -19,9 +19,9 @@ function divide(x,y) {
 }
 
 function operate(operator,x,y) {
-    if(operator==='/' && y===0) 
+    if(operator==='/' && y==0) 
         return 'Cannot divide by 0, dumbass!';
-
+    
     switch(operator) {
         case '+':
             x = parseFloat(x);
@@ -49,7 +49,8 @@ function display(button) {
         result='';
         operation='';
     } else if(buttonPressed=='del') {
-        outputDiv.innerHTML = outputDiv.innerHTML.substring(0, outputDiv.innerHTML.length - 1);
+        let str = outputDiv.innerHTML.substring(0, outputDiv.innerHTML.length - 1);
+        outputDiv.innerHTML = str;
     } else if(buttonPressed=='.') {
         if(outputDiv.innerHTML.includes('.'))
             return;
@@ -84,6 +85,15 @@ function display(button) {
             if(!firstNum || !secondNum) 
                 return;
             result = operate(operation, firstNum, secondNum);
+
+            // edge case dividing by 0
+            if(typeof result==='string') {
+                outputDiv.innerHTML = result;
+                firstNum = '';
+                secondNum = '';
+                return;
+            }
+                
             result = Math.round((result + Number.EPSILON) * 100) / 100;
             outputDiv.innerHTML = result;
             firstNum = result;
@@ -93,7 +103,6 @@ function display(button) {
                 result = operate(operation, firstNum, secondNum);
                 result = Math.round((result + Number.EPSILON) * 100) / 100;
                 outputDiv.innerHTML = result;
-
                 firstNum = result;
                 secondNum = '';
             }
