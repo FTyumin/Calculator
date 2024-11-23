@@ -3,7 +3,6 @@ let secondNum='';
 let operation;
 
 function add(x,y) {
-    console.log(x+y);
     return x+y;
 }
 
@@ -20,12 +19,13 @@ function divide(x,y) {
 }
 
 function operate(operator,x,y) {
-    x = parseInt(x);
-    y = parseInt(y);
     if(operator==='/' && y===0) 
         return 'Cannot divide by 0, dumbass!';
+
     switch(operator) {
         case '+':
+            x = parseFloat(x);
+            y = parseFloat(y);
             return add(x,y);
         case '-':
             return subtract(x,y);
@@ -34,10 +34,6 @@ function operate(operator,x,y) {
         case '/':
             return divide(x, y);
     }
-}
-
-function clear() {
-
 }
 
 function display(button) {
@@ -53,67 +49,63 @@ function display(button) {
         result='';
         operation='';
     } else if(buttonPressed=='del') {
+        outputDiv.innerHTML = outputDiv.innerHTML.substring(0, outputDiv.innerHTML.length - 1);
+    } else if(buttonPressed=='.') {
+        if(outputDiv.innerHTML.includes('.'))
+            return;
+         if (secondNum && operation) {
+            secondNum+='.';
+            outputDiv.innerHTML = secondNum;
+        }
+        else if(firstNum) {
+            firstNum+='.';
+            outputDiv.innerHTML = firstNum;
+        }
         
-    }
-     else {
+    } else {
 
         if(buttonType==='num') {
             outputDiv.innerHTML = buttonPressed;
             if(!firstNum) 
-            {
                 firstNum = buttonPressed;
-                console.log(firstNum);
-            }
             else if(firstNum && !operation) {
                 firstNum += buttonPressed;
                 outputDiv.innerHTML = firstNum;
             }
                
-            else if(!secondNum) {
+            else if(!secondNum) 
                 secondNum = buttonPressed;
-                console.log(secondNum);
+            else if (secondNum) {
+                secondNum+=buttonPressed;
+                outputDiv.innerHTML = secondNum;
             }
-            else if(firstNum && secondNum) {
                 
-            } 
-                
-
-            
         } else if(buttonPressed==='=') {
+            if(!firstNum || !secondNum) 
+                return;
             result = operate(operation, firstNum, secondNum);
+            result = Math.round((result + Number.EPSILON) * 100) / 100;
             outputDiv.innerHTML = result;
-            result = parseInt(result);
             firstNum = result;
             secondNum = '';
         } else {
-            
-            // result = operate(operation, firstNum, secondNum);
-            // if(result) {
-            //     outputDiv.innerHTML = result;
-            // }
             if(firstNum && secondNum) {
                 result = operate(operation, firstNum, secondNum);
-            outputDiv.innerHTML = result;
-            result = parseInt(result);
-            firstNum = result;
-            secondNum = '';
-            
+                result = Math.round((result + Number.EPSILON) * 100) / 100;
+                outputDiv.innerHTML = result;
+
+                firstNum = result;
+                secondNum = '';
             }
             operation = buttonPressed;
         }
-
-
-        
-
-        
     }
-    
 }
 
 const buttons = document.querySelectorAll("button");
 
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
-        display(button)
+        display(button);
     })
 })
