@@ -48,12 +48,27 @@ function display(button) {
         secondNum='';
         result='';
         operation='';
+
     } else if(buttonPressed=='del') {
-        let str = outputDiv.innerHTML.substring(0, outputDiv.innerHTML.length - 1);
-        outputDiv.innerHTML = str;
+        // let str = outputDiv.innerHTML.substring(0, outputDiv.innerHTML.length - 1);
+        // outputDiv.innerHTML = str;
+        if(!secondNum) {
+            firstNum = firstNum.substring(0, firstNum.length - 1);
+            outputDiv.innerHTML = firstNum;
+            console.log(firstNum);
+        }
+        if(secondNum) {
+            secondNum = secondNum.substring(0, secondNum.length - 1);
+            outputDiv.innerHTML = secondNum;
+            console.log(secondNum); 
+        }
+        
+
+
     } else if(buttonPressed=='.') {
         if(outputDiv.innerHTML.includes('.'))
             return;
+
          if (secondNum && operation) {
             secondNum+='.';
             outputDiv.innerHTML = secondNum;
