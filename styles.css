@@ -13,7 +13,6 @@ body {
 .container {
     display: flex;
     justify-content: center;
-    align-items: ;
 }
 
 button {
@@ -31,10 +30,10 @@ button {
 }
 
 .display {
-    margin: 15px;
+    margin: 15px ;
     background-color: white;
     height: 100px;
-    width: 400px;
+    width: 420px;
     display: inline-block; /*this line makes the margin visible*/
     font-size: 32px;
 }
@@ -42,6 +41,7 @@ button {
 .row {
     margin: 10px;
 }
+
 
 .row:first-child {
     margin-top: 30px;
