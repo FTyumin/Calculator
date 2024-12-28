@@ -4,6 +4,18 @@
     padding: 0;
 }
 
+body {
+    display:flex;
+    align-items: center;
+    justify-content:center ;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: ;
+}
+
 button {
     width: 100px;
     height: 100px;
@@ -13,21 +25,19 @@ button {
 .calculator {
     margin-top: 100px;
     margin-left: 30px;
-    width: 500px;
-    background-color: grey;
+    width: 450px;
+    background-color: rgb(204,204,204);
     height: 700px;
 }
 
 .display {
-    margin: 10px 25px;
-    background-color: beige;
+    margin: 15px;
+    background-color: white;
     height: 100px;
     width: 400px;
     display: inline-block; /*this line makes the margin visible*/
-    font-size: 32px;;
+    font-size: 32px;
 }
-
-
 
 .row {
     margin: 10px;
@@ -35,4 +45,10 @@ button {
 
 .row:first-child {
     margin-top: 30px;
+}
+
+input {
+    height: 100%;
+    width: 100%;
+    font-size:32px;
 }

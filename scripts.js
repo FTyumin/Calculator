@@ -50,8 +50,8 @@ function display(button) {
         operation='';
 
     } else if(buttonPressed=='del') {
-        // let str = outputDiv.innerHTML.substring(0, outputDiv.innerHTML.length - 1);
-        // outputDiv.innerHTML = str;
+        let str = outputDiv.innerHTML.substring(0, outputDiv.innerHTML.length - 1);
+        outputDiv.innerHTML = str;
         if(!secondNum) {
             firstNum = firstNum.substring(0, firstNum.length - 1);
             outputDiv.innerHTML = firstNum;
@@ -63,8 +63,6 @@ function display(button) {
             console.log(secondNum); 
         }
         
-
-
     } else if(buttonPressed=='.') {
         if(outputDiv.innerHTML.includes('.'))
             return;
@@ -127,9 +125,64 @@ function display(button) {
 }
 
 const buttons = document.querySelectorAll("button");
+const container = document.querySelector(".container");
+let input = document.querySelector("input");
 
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
         display(button);
     })
 })
+
+const body = document.querySelector("body")
+let outputDiv = document.querySelector(".display");
+
+document.addEventListener("keydown", (e) => {
+    const key = e.key;
+    const validKeys = '0123456789.+-*/=BackspaceEscapeEnter';
+
+    if (!validKeys.includes(key)) return;
+
+    if (key >= '0' && key <= '9' || key === '.') {
+        display({
+            getAttribute: (attr) => {
+                if (attr === "name") return key; // Simulate button name
+                if (attr === "id") return "num"; // Simulate button type
+            }
+        });
+        console.log("Number key pressed:", key);
+    } else if ('+-*/'.includes(key)) {
+        display({
+            getAttribute: (attr) => {
+                if (attr === "name") return key; // Simulate operator name
+                if (attr === "id") return "op";  // Simulate operator type
+            }
+        });
+        console.log("Operator key pressed:", key);
+    } else if (key === '=' || key === 'Enter') {
+        display({
+            getAttribute: (attr) => {
+                if (attr === "name") return "="; // Simulate equals button
+                if (attr === "id") return "equals"; 
+            }
+        });
+        console.log("Equals key pressed");
+    } else if (key === 'Backspace') {
+        display({
+            getAttribute: (attr) => {
+                if (attr === "name") return "del"; // Simulate delete button
+                if (attr === "id") return "del";
+            }
+        });
+        console.log("Backspace key pressed");
+    } else if (key === 'c') {
+        display({
+            getAttribute: (attr) => {
+                if (attr === "name") return "C"; // Simulate clear button
+                if (attr === "id") return "clear";
+            }
+        });
+        console.log("Escape key pressed");
+    }
+    console.log(key)
+});
